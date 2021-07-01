@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Video Upload</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+	<div class="messages">
+		<p>
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}
+		<ul class=flashes>
+			{% for message in messages %}
+			<li>{{ message }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		{% endwith %}
+		</p>
+	</div>
+
+	<div class="drag-area">
+		<div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+		<header>VGG16 Object Detection</header>
+		<div class="center">
+			<form method="POST" action="{{ url_for('upload_file') }}" enctype="multipart/form-data">
+				<dl>
+					<p>
+						<input type="file" class="button" name="files[]" multiple="true" autocomplete="off" required>
+					</p>
+				</dl>
+				<p>
+					<input type="submit" class="button" value="Submit and Analyse">
+				</p>
+
+			</form>
+
+			<form method="post" action="{{ url_for('search_objects') }}">
+				<p>
+					<input type="text" class="button" placeholder="Type the object name here" name="search" id="search">
+				</p>
+				<p>
+					<input type="submit" class="button" value="Search Object">
+				</p>
+			</form>
+
+		</div>
+	</div>
+
+	<div class="picture">
+
+		{% if showImages %}s
+
+		<img height="480" , width="480" , src="{{url_for('static', filename=images)}}" />
+
+
+		{% endif %}
+	</div>
+
+</body>
+
+</html>
